@@ -41,7 +41,7 @@ def show_content(article_id: str, **cookies):
         data = data["data"]["article"]
         print(f"# {data['title']}")
         print()
-        print(f"*Author: {data["author"]["name"]}*")
+        print(f"*Author: {data['author']['name']}*")
         print()
         print(data["content"])
     else:
