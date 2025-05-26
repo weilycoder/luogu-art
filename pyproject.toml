@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "luogu-art"
-version = "0.2.0"
+version = "0.2.1"
 description = "Fetch and display article content from Luogu."
 authors = ["weilycoder <weily2009@outlook.com>"]
 license = "MIT"

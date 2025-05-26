@@ -1,6 +1,5 @@
 import sys
 import json
-import argparse
 import requests
 from bs4 import BeautifulSoup
 
@@ -35,7 +34,7 @@ def show_content(article_id: str, proxies=None, **cookies):
         data = data["data"]["article"]
         print(f"# {data['title']}")
         print()
-        print(f"*Author: {data['author']['name']}*")
+        print(f"*Author: [{data['author']['name']}](https://www.luogu.com.cn/user/{data['author']['uid']})*")
         print()
         print(data["content"])
     else:
@@ -43,7 +42,7 @@ def show_content(article_id: str, proxies=None, **cookies):
         print(f"Status code: {data['status']}", file=sys.stderr)
 
 
-if __name__ == "__main__":
+def main():
     import argparse
 
     parser = argparse.ArgumentParser(description="Fetch and display article content from Luogu.")
@@ -80,3 +79,11 @@ if __name__ == "__main__":
         }
 
     show_content(args.article_id, proxies=proxies, **cookies)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        print(f"An error occurred: {e}", file=sys.stderr)
+        sys.exit(1)
