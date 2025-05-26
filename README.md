@@ -7,7 +7,7 @@
 使用方法：
 
 ```plaintext
-usage: luogu-art.py [-h] [--uid UID] [--client_id CLIENT_ID] [--proxy PROXY] article_id
+usage: luogu-art.py [-h] [-u UID] [-c CLIENT_ID] [-f COOKIE_FILE] [-p PROXY] article_id
 
 Fetch and display article content from Luogu.
 
@@ -16,10 +16,13 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --uid UID             The UID for the cookies.
-  --client_id CLIENT_ID
+  -u UID, --uid UID     The UID for the cookies.
+  -c CLIENT_ID, --client_id CLIENT_ID
                         The client ID for the cookies.
-  --proxy PROXY         The proxy server to use (e.g., http://proxy.example.com:8080).
+  -f COOKIE_FILE, --cookie-file COOKIE_FILE
+                        Path to a file containing cookies in JSON format.
+  -p PROXY, --proxy PROXY
+                        The proxy server to use (e.g., http://proxy.example.com:8080).
 ```
 
 ### 其他声明
