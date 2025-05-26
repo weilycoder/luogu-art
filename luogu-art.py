@@ -48,13 +48,26 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Fetch and display article content from Luogu.")
     parser.add_argument("article_id", help="The ID of the article to fetch.")
-    parser.add_argument("--uid", help="The UID for the cookies.")
-    parser.add_argument("--client_id", help="The client ID for the cookies.")
-    parser.add_argument("--proxy", help="The proxy server to use (e.g., http://proxy.example.com:8080).")
+    parser.add_argument("-u", "--uid", help="The UID for the cookies.")
+    parser.add_argument("-c", "--client_id", help="The client ID for the cookies.")
+    parser.add_argument("-f", "--cookie-file", help="Path to a file containing cookies in JSON format.")
+    parser.add_argument("-p", "--proxy", help="The proxy server to use (e.g., http://proxy.example.com:8080).")
 
     args = parser.parse_args()
 
     cookies = {}
+
+    if args.cookie_file:
+        try:
+            with open(args.cookie_file, "r") as f:
+                cookies = json.load(f)
+            assert isinstance(cookies, dict), "Cookie file must contain a JSON object."
+            assert all(isinstance(k, str) and isinstance(v, str) for k, v in cookies.items()), "Cookies must be key-value pairs of strings."
+        except AssertionError as e:
+            print(f"Invalid cookie format: {e}", file=sys.stderr)
+        except Exception as e:
+            print(f"Error reading cookie file: {e}", file=sys.stderr)
+
     if args.uid and args.client_id:
         cookies["uid"] = args.uid
         cookies["__client_id"] = args.client_id
